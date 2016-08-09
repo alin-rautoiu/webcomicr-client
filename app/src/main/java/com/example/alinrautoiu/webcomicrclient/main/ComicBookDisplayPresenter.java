@@ -13,9 +13,9 @@ import rx.schedulers.Schedulers;
 
 public class ComicBookDisplayPresenter {
 
-    ComicBookDisplayActivity view;
+    private ComicBookDisplayActivity view;
 
-    public ComicBookDisplayPresenter(ComicBookDisplayActivity view) {
+    ComicBookDisplayPresenter(ComicBookDisplayActivity view) {
         this.view = view;
     }
 
@@ -27,12 +27,10 @@ public class ComicBookDisplayPresenter {
                 .subscribe(new Observer<Series>() {
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
                     }
 
                     @Override

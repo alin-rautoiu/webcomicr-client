@@ -1,7 +1,9 @@
 package com.example.alinrautoiu.webcomicrclient.main;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,10 +49,14 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicsViewHolder> {
     @Override
     public void onBindViewHolder(ComicsViewHolder holder, int position) {
         ComicPanel panel = panels.get(position);
-//        Picasso.with(context)
-//                .load(panel.imageUrl)
-//                .into(holder.panelImageView);
+
+        Uri uri = Uri.parse(panel.imageUrl.replace(" ", "%20"));
+        Picasso.with(holder.panelImageView.getContext())
+                .load(uri)
+                .into(holder.panelImageView);
     }
+
+
 
     @Override
     public int getItemCount() {
