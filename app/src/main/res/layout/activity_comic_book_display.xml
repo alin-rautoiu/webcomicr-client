@@ -4,7 +4,7 @@
     android:id="@+id/activity_comic_book_display"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alinrautoiu.webcomicrclient.main.ComicBookDisplayActivity">
+    tools:context="com.example.alinrautoiu.webcomicrclient.main.comic.ComicBookDisplayActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/comic_rv"

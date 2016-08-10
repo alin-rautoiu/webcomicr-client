@@ -17,6 +17,8 @@ public class Episode {
     public int columns;
     @SerializedName("name")
     public String name;
+    @SerializedName("thumbnail")
+    public String thumbnail;
     @SerializedName("images")
     public List<ComicPanel> images;
 }

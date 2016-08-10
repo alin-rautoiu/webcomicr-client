@@ -15,4 +15,6 @@ public class Series {
     public String name;
     @SerializedName("episodes")
     public List<Episode> episodes;
+    @SerializedName("thumbnail")
+    public String thumbnail;
 }

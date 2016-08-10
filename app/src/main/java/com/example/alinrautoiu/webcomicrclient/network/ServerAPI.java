@@ -1,6 +1,9 @@
 package com.example.alinrautoiu.webcomicrclient.network;
 
+import com.example.alinrautoiu.webcomicrclient.common.Episode;
 import com.example.alinrautoiu.webcomicrclient.common.Series;
+
+import java.util.List;
 
 import retrofit.client.Response;
 import retrofit.http.GET;
@@ -17,4 +20,14 @@ public interface ServerAPI {
 
     @GET("/getSeries/{id}")
     Observable<Series> getSeries(@Path("id") int  id);
+
+    @GET("/getEpisodesList/{seriesId}")
+    Observable<List<Episode>> getEpisodesList(@Path("seriesId") int  id);
+
+    //TODO Add series param as well
+    @GET("/getEpisode/{episodeId}")
+    Observable<Episode> getEpisode(@Path("episodeId") int  id);
+
+    @GET("/getSeriesList/")
+    Observable<List<Series>> getSeriesList();
 }
