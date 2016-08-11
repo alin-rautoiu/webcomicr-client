@@ -34,9 +34,9 @@ public class EpisodesListPresenter {
         this.view = view;
     }
 
-    public void loadEpisodes() {
+    public void loadEpisodes(int seriesId) {
         App.getServerAPI()
-                .getEpisodesList(1)
+                .getEpisodesList(seriesId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Episode>>() {
