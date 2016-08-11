@@ -10,4 +10,6 @@ public class ComicPanel {
     public int id;
     @SerializedName("path")
     public String imageUrl;
+    @SerializedName("colspan")
+    public int colspan;
 }

@@ -58,4 +58,8 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicsViewHolder> {
         panels.clear();
     }
 
+    public int getColSpan(int position) {
+        return panels.get(position).colspan;
+    }
+
 }

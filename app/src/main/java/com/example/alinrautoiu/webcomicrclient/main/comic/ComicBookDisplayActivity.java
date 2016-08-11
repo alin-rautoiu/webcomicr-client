@@ -58,17 +58,25 @@ public class ComicBookDisplayActivity extends AppCompatActivity {
             float currentSpanY = scaleGestureDetector.getCurrentSpanY()
                     * scaleGestureDetector.getScaleFactor();
             if (currentSpanX > firstSpanX || currentSpanY > firstSpanY) {
-                columnCount = columnCount - 1 == 0 ? MIN_COLUMN_COUNT : columnCount - 1;
+                columnCount = Math.max(MIN_COLUMN_COUNT, columnCount - 1);
                 updateColumnLayout();
             } else if (currentSpanX < firstSpanX || currentSpanY < firstSpanY) {
-                columnCount = columnCount + 1 == 5 ? MAX_COLUMN_COUNT : columnCount + 1;
+                columnCount = Math.min(MAX_COLUMN_COUNT, columnCount + 1);
                 updateColumnLayout();
             }
         }
     };
 
     private void updateColumnLayout() {
-        comicRecyclerView.setLayoutManager(new GridLayoutManager(context, columnCount));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, columnCount);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return Math.max(comicAdapter.getColSpan(position), MIN_COLUMN_COUNT);
+            }
+        });
+
+        comicRecyclerView.setLayoutManager(gridLayoutManager);
     }
 
     ComicAdapter comicAdapter;
