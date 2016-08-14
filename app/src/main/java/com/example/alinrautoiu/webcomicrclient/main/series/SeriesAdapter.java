@@ -41,7 +41,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
         holder.titleTextView.setText(aSeries.name);
         holder.id = aSeries.id;
 
-        Uri uri = Uri.parse(aSeries.thumbnail.replace(" ", "%20"));
+        Uri uri = Uri.parse(aSeries.thumbnail);
         Picasso.with(holder.thumbnailImageView.getContext())
                 .load(uri)
                 .into(holder.thumbnailImageView);

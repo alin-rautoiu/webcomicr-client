@@ -28,13 +28,15 @@ import rx.schedulers.Schedulers;
 public class EpisodesListPresenter {
 
     EpisodesListActivity view;
+    String seriesId;
 
     public EpisodesListPresenter(EpisodesListActivity view) {
         EventBus.getDefault().register(this);
         this.view = view;
     }
 
-    public void loadEpisodes(int seriesId) {
+    public void loadEpisodes(String seriesId) {
+        this.seriesId = seriesId;
         App.getServerAPI()
                 .getEpisodesList(seriesId)
                 .subscribeOn(Schedulers.newThread())
@@ -58,6 +60,7 @@ public class EpisodesListPresenter {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEpisodeSelected(EpisodeSelectedEvent event) {
         Intent startIntent = ComicBookDisplayActivity.getStartIntent(view);
+        startIntent.putExtra("SID", seriesId);
         startIntent.putExtra("EPID", event.selectedEpisode);
         view.startActivity(startIntent);
     }

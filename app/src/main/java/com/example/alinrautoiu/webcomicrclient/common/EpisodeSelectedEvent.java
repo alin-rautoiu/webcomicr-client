@@ -5,9 +5,9 @@ package com.example.alinrautoiu.webcomicrclient.common;
  */
 
 public class EpisodeSelectedEvent {
-    public final int selectedEpisode;
+    public final String selectedEpisode;
 
-    public EpisodeSelectedEvent(int selectedEpisode) {
+    public EpisodeSelectedEvent(String selectedEpisode) {
         this.selectedEpisode = selectedEpisode;
     }
 }

@@ -20,7 +20,7 @@ public class ComicBookDisplayPresenter {
         this.view = view;
     }
 
-    public void loadPanels(int episodeId) {
+    public void loadPanels(String seriesId, String episodeId) {
         App.getServerAPI()
                 .getEpisode(episodeId)
                 .subscribeOn(Schedulers.newThread())

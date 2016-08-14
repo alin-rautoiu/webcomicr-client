@@ -21,7 +21,7 @@ public class EpisodesListActivity extends AppCompatActivity {
     RecyclerView episodesListRecyclerView;
     EpisodesListPresenter presenter;
     EpisodesAdapter adapter;
-    int seriesId;
+    String seriesId;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, EpisodesListActivity.class);
@@ -35,9 +35,7 @@ public class EpisodesListActivity extends AppCompatActivity {
 
         Intent startIntent = getIntent();
         if(startIntent.getExtras() != null) {
-            seriesId = startIntent.getExtras().getInt("SID");
-        } else {
-            seriesId = 1;
+            seriesId = startIntent.getExtras().getString("SID");
         }
 
         adapter = new EpisodesAdapter(this);

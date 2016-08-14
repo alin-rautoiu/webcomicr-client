@@ -23,7 +23,7 @@ public class EpisodeViewHolder extends RecyclerView.ViewHolder {
     ImageView thumbnailImageView;
     @BindView(R.id.title_tv)
     TextView titleTextView;
-    int id;
+    String id;
 
     @OnClick(R.id.episode_cv)
     void cardViewClicked(View view) {

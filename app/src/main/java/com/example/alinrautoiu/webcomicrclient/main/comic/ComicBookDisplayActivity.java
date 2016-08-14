@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import com.example.alinrautoiu.webcomicrclient.R;
 import com.example.alinrautoiu.webcomicrclient.common.Episode;
+import com.example.alinrautoiu.webcomicrclient.main.episodes.EpisodesListActivity;
 import com.example.alinrautoiu.webcomicrclient.utils.Utils;
 
 import butterknife.BindView;
@@ -72,7 +73,8 @@ public class ComicBookDisplayActivity extends AppCompatActivity {
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                return Math.max(comicAdapter.getColSpan(position), MIN_COLUMN_COUNT);
+                int canonicalSpanSize = Math.max(comicAdapter.getColSpan(position, columnCount), MIN_COLUMN_COUNT);
+                return Math.min(canonicalSpanSize, columnCount);
             }
         });
 
@@ -83,7 +85,8 @@ public class ComicBookDisplayActivity extends AppCompatActivity {
     ComicBookDisplayPresenter presenter;
     Context context;
 
-    int episodeId;
+    String seriesId;
+    String episodeId;
     int columnCount;
 
     public static Intent getStartIntent(Context context) {
@@ -98,10 +101,10 @@ public class ComicBookDisplayActivity extends AppCompatActivity {
 
         Intent startIntent = getIntent();
         if (startIntent.getExtras() != null) {
-            episodeId = startIntent.getExtras().getInt("EPID");
-        } else {
-            episodeId = 1;
+            seriesId = startIntent.getExtras().getString("SID");
+            episodeId = startIntent.getExtras().getString("EPID");
         }
+
         context = this;
 
         scaleGestureDetector = new ScaleGestureDetector(this, scaleGestureListener);
@@ -114,16 +117,16 @@ public class ComicBookDisplayActivity extends AppCompatActivity {
         });
 
         presenter = new ComicBookDisplayPresenter(this);
-        presenter.loadPanels(episodeId);
+        presenter.loadPanels(seriesId, episodeId);
     }
 
     public void displayPanels(Episode ep) {
         int orientation = Utils.getOrientation(context);
 
         if (orientation == OrientationHelper.VERTICAL) {
-            columnCount = 2;
+            columnCount = ep.columns / 2;
         } else {
-            columnCount = 4;
+            columnCount = ep.columns;
         }
 
         updateColumnLayout();
@@ -131,6 +134,12 @@ public class ComicBookDisplayActivity extends AppCompatActivity {
 
         comicAdapter.clear();
         comicAdapter.addAll(ep.images);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //startActivity(EpisodesListActivity.getStartIntent(context));
     }
 }
 

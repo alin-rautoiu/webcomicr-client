@@ -9,8 +9,8 @@ import java.util.List;
  */
 
 public class Episode {
-    @SerializedName("id")
-    public int id;
+    @SerializedName("_id")
+    public String id;
     @SerializedName("row")
     public int rows;
     @SerializedName("columns")

@@ -9,8 +9,8 @@ import java.util.List;
  */
 
 public class Series {
-    @SerializedName("id")
-    public int id;
+    @SerializedName("_id")
+    public String id;
     @SerializedName("name")
     public String name;
     @SerializedName("episodes")

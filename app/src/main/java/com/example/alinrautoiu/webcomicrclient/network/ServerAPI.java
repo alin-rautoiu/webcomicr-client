@@ -8,6 +8,7 @@ import java.util.List;
 import retrofit.client.Response;
 import retrofit.http.GET;
 import retrofit.http.Path;
+import retrofit.http.Query;
 import rx.Observable;
 
 /**
@@ -19,14 +20,13 @@ public interface ServerAPI {
     public static final String ENDPOINT = "https://webcomicr.herokuapp.com";
 
     @GET("/getSeries/{id}")
-    Observable<Series> getSeries(@Path("id") int  id);
+    Observable<Series> getSeries(@Path("id") String  id);
 
     @GET("/getEpisodesList/{seriesId}")
-    Observable<List<Episode>> getEpisodesList(@Path("seriesId") int  id);
+    Observable<List<Episode>> getEpisodesList(@Path("seriesId") String  id);
 
-    //TODO Add series param as well
-    @GET("/getEpisode/{episodeId}")
-    Observable<Episode> getEpisode(@Path("episodeId") int  id);
+    @GET("/getEpisode/")
+    Observable<Episode> getEpisode( @Query("episodeId") String  episodeId);
 
     @GET("/getSeriesList/")
     Observable<List<Series>> getSeriesList();
